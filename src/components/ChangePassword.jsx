@@ -31,7 +31,7 @@ function ChangePassword({ onClose }) {
 
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      const response = await axios.post('http://localhost:5000/api/change-password', {
+      const response = await axios.post('https://mentorship-management-system-backend-1.onrender.com/api/change-password', {
         username: user.username,
         currentPassword: formData.currentPassword,
         newPassword: formData.newPassword
