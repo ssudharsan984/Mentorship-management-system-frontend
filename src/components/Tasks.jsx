@@ -20,7 +20,7 @@ function Tasks() {
 
   const loadTasks = () => {
     axios
-      .get("http://localhost:5000/api/tasks")
+      .get("https://mentorship-management-system-backend-1.onrender.com/api/tasks")
       .then((res) => setTasks(res.data))
       .catch((err) => console.error("Error loading tasks", err));
   };
@@ -35,7 +35,7 @@ function Tasks() {
   const handleCreate = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/tasks", form)
+      .post("https://mentorship-management-system-backend-1.onrender.com/api/tasks", form)
       .then(() => {
         setForm({
           title: "",
@@ -65,7 +65,7 @@ function Tasks() {
       console.log('Saving marks for task:', marksForm.taskId);
       
       const response = await axios.patch(
-        `http://localhost:5000/api/tasks/${marksForm.taskId}/marks`,
+        `https://mentorship-management-system-backend-1.onrender.com/api/tasks/${marksForm.taskId}/marks`,
         {
           obtainedMarks: Number(marksForm.obtainedMarks),
           remarks: marksForm.remarks
