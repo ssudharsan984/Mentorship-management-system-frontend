@@ -14,7 +14,7 @@ function MenteeLogin() {
 
     try {
       console.log('Attempting student login:', username);
-      const res = await axios.post("http://localhost:5000/api/login", { username, password });
+      const res = await axios.post("https://mentorship-management-system-backend-1.onrender.com/api/login", { username, password });
       console.log('Login response:', res.data);
 
       if (res.data.success) {
