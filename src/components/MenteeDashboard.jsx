@@ -61,7 +61,7 @@ function MenteeDashboard() {
 
   const updateTaskStatus = async (taskId, newStatus) => {
     try {
-      await axios.patch(`http://localhost:5000/api/tasks/${taskId}`, { status: newStatus });
+      await axios.patch(`https://mentorship-management-system-backend-1.onrender.com/api/tasks/${taskId}`, { status: newStatus });
       setTasks(tasks.map(task => 
         task.id === taskId ? { ...task, status: newStatus } : task
       ));
