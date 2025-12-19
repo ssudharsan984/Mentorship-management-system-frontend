@@ -64,8 +64,8 @@ function MentorDashboard() {
     try {
       setLoading(true);
       const [menteesRes, tasksRes] = await Promise.all([
-        axios.get("http://localhost:5000/api/mentees"),
-        axios.get("http://localhost:5000/api/tasks")
+        axios.get("https://mentorship-management-system-backend-1.onrender.com/api/mentees"),
+        axios.get("https://mentorship-management-system-backend-1.onrender.com/api/tasks")
       ]);
 
       const menteesData = menteesRes.data || [];
@@ -86,7 +86,7 @@ function MentorDashboard() {
     if (!mentorId) return;
 
     try {
-      const response = await axios.post("http://localhost:5000/api/mentees", {
+      const response = await axios.post("https://mentorship-management-system-backend-1.onrender.com/api/mentees", {
         ...newMentee,
         semester: Number(newMentee.semester),
         mentorId
@@ -108,7 +108,7 @@ function MentorDashboard() {
     if (!mentorId) return;
 
     try {
-      await axios.post("http://localhost:5000/api/tasks", {
+      await axios.post("https://mentorship-management-system-backend-1.onrender.com/api/tasks", {
         ...newTask,
         mentorId,
         menteeId: Number(newTask.menteeId),
