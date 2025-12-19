@@ -37,7 +37,7 @@ function Register() {
 
     if (role === "mentor") {
       axios
-        .post("http://localhost:5000/api/register/mentor", {
+        .post("https://mentorship-management-system-backend-1.onrender.com/api/register/mentor", {
           name: form.name,
           department: form.department,
           email: form.email,
@@ -50,7 +50,7 @@ function Register() {
         .catch(() => setMessage("Error registering mentor."));
     } else {
       axios
-        .post("http://localhost:5000/api/register/mentee", {
+        .post("https://mentorship-management-system-backend-1.onrender.com/api/register/mentee", {
           name: form.name,
           usn: form.usn,
           semester: form.semester,
