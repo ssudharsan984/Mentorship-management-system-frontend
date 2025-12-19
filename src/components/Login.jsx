@@ -13,7 +13,7 @@ function Login() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/login", { username, password });
+      const res = await axios.post("https://mentorship-management-system-backend-1.onrender.com/api/login", { username, password });
 
       if (res.data.success) {
         localStorage.setItem("user", JSON.stringify(res.data));
