@@ -1,26 +1,28 @@
-// src/components/Sidebar.jsx
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Sidebar = ({ open }) => {
+function Sidebar() {
   return (
-    <aside className={`sidebar ${open ? "open" : "closed"}`}>
-      <nav>
-        <NavLink to="/dashboard" className="sidebar-link">
-          Dashboard
-        </NavLink>
-        <NavLink to="/mentors" className="sidebar-link">
-          Mentors
-        </NavLink>
-        <NavLink to="/mentees" className="sidebar-link">
-          Mentees
-        </NavLink>
-        <NavLink to="/assignments" className="sidebar-link">
-          Assignments
-        </NavLink>
-      </nav>
-    </aside>
+    <div className="sidebar">
+      <ul>
+        <li>
+          <Link to="/mentor-dashboard">Mentor Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/mentee-dashboard">Mentee Dashboard</Link>
+        </li>
+        <li>
+          <Link to="/tasks">Tasks</Link>
+        </li>
+        <li>
+          <Link to="/assignments">Assignments</Link>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
+      </ul>
+    </div>
   );
-};
+}
 
 export default Sidebar;

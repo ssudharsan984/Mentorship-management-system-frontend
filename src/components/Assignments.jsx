@@ -1,79 +1,48 @@
 // src/components/Assignments.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const dummyMentors = [
-  { id: 1, name: "Dr. Sharma" },
-  { id: 2, name: "Prof. Rao" },
-];
-
-const dummyMentees = [
-  { id: 1, name: "Anita" },
-  { id: 2, name: "Rahul" },
-];
-
-const Assignments = () => {
+function Assignments() {
   const [assignments, setAssignments] = useState([]);
-  const [mentorId, setMentorId] = useState("");
-  const [menteeId, setMenteeId] = useState("");
+  const [error, setError] = useState("");
 
-  const handleAssign = e => {
-    e.preventDefault();
-    if (!mentorId || !menteeId) return;
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/tasks")      // FIXED URL
+      .then((res) => setAssignments(res.data))
+      .catch((err) => {
+        console.error("Error loading assignments", err);
+        setError("Failed to load assignments");
+      });
+  }, []);
 
-    const mentor = dummyMentors.find(m => String(m.id) === mentorId);
-    const mentee = dummyMentees.find(m => String(m.id) === menteeId);
-
-    setAssignments([
-      ...assignments,
-      { id: Date.now(), mentor: mentor.name, mentee: mentee.name },
-    ]);
-    setMentorId("");
-    setMenteeId("");
-  };
+  if (error) return <div>{error}</div>;
 
   return (
     <div>
-      <h2>Assignments</h2>
-      <form className="form-inline" onSubmit={handleAssign}>
-        <select value={mentorId} onChange={e => setMentorId(e.target.value)}>
-          <option value="">Select mentor</option>
-          {dummyMentors.map(m => (
-            <option key={m.id} value={m.id}>
-              {m.name}
-            </option>
-          ))}
-        </select>
-
-        <select value={menteeId} onChange={e => setMenteeId(e.target.value)}>
-          <option value="">Select mentee</option>
-          {dummyMentees.map(m => (
-            <option key={m.id} value={m.id}>
-              {m.name}
-            </option>
-          ))}
-        </select>
-
-        <button type="submit">Assign</button>
-      </form>
-
-      <table className="table">
+      <h2>Mentor–Mentee Assignments</h2>
+      <table className="data-table">
         <thead>
           <tr>
-            <th>Mentor</th>
-            <th>Mentee</th>
+            <th>ID</th>
+            <th>Mentor ID</th>
+            <th>Mentee ID</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {assignments.map(a => (
+          {assignments.map((a) => (
             <tr key={a.id}>
-              <td>{a.mentor}</td>
-              <td>{a.mentee}</td>
+              <td>{a.id}</td>
+              <td>{a.mentorId}</td>
+              <td>{a.menteeId}</td>
+              <td>{a.status}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-};
+}
 
 export default Assignments;
