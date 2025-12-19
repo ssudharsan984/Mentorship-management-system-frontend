@@ -8,7 +8,7 @@ function Assignments() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/tasks")      // FIXED URL
+      .get("https://mentorship-management-system-backend-1.onrender.com/api/tasks")      // FIXED URL
       .then((res) => setAssignments(res.data))
       .catch((err) => {
         console.error("Error loading assignments", err);
