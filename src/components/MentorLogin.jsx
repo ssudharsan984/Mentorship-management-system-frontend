@@ -18,7 +18,7 @@ function MentorLogin() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/login", formData);
+      const response = await axios.post("https://mentorship-management-system-backend-1.onrender.com/api/login", formData);
 
       if (response.data.success && response.data.role === "mentor") {
         localStorage.setItem("user", JSON.stringify(response.data));
